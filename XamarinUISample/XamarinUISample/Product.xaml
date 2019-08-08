@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:binding="clr-namespace:XamarinUISample.ViewModel"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="false"
+             x:Class="XamarinUISample.Product">
+    <ContentPage.BindingContext>
+        <binding:ProductViewModel/>
+    </ContentPage.BindingContext>
+    
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0" Grid.RowSpan="2">
+                <StackLayout>
+                    <Grid>
+                        <Image Source="bg3.jpg" Aspect="Fill" VerticalOptions="Start"/>
+                        <StackLayout Padding="20,50,20,0" HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding Product.Name}" HorizontalOptions="Start" FontSize="22" TextColor="White" FontAttributes="Bold"/>
+                            <Label Text="Dr. Dre" HorizontalOptions="Start" FontSize="22" TextColor="White" FontAttributes="Bold"/>
+                            <Image Source="{Binding Product.Path}" HeightRequest="300"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Padding="20,0,20,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="Experience Your music like never before" HorizontalOptions="Start" FontSize="Large" FontAttributes="Bold" TextColor="Black"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="battery.png" Grid.Row="0" Grid.Column="0"/>
+                                <Image Source="wifi.png" Grid.Row="1" Grid.Column="0"/>
+                                <Label Text="{Binding Product.Battery, StringFormat='Up to {0}-hour battery'}" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" TextColor="Black"/>
+                                <Label Text="{Binding Product.Connection}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" TextColor="Black"/>
+                            </Grid>
+                        </StackLayout>
+                        <Image Grid.Column="1" Source="beats_case.png" HeightRequest="150" HorizontalOptions="Center"/>
+                    </Grid>
+                    <Label Margin="20,0,20,0"
+                       TextColor="Black"
+                    Text="{Binding Product.Description}"/>
+                </StackLayout>
+            </ScrollView>
+            <Button Grid.Row="0" Margin="20,0,0,0" Text="&lt;" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Start" WidthRequest="20" TextColor="White" Padding="0"  Clicked="Button_Clicked" BackgroundColor="Transparent"/>
+            <Frame Grid.Row="2" HeightRequest="50" Padding="0" Margin="0" HasShadow="True" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Padding="0" Margin="0" BackgroundColor="#7C6AD6" Grid.Column="0" >
+                        <Label Text="Buy Now 120$" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Frame>
+                    <Frame Padding="0" Margin="0" BackgroundColor="White" Grid.Column="1">
+                        <Label Text="Add to Cart" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Frame>
+                </Grid>
+            </Frame>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

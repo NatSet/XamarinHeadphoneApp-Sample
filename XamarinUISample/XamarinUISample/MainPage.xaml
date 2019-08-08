@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:binding="clr-namespace:XamarinUISample.ViewModel"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="false"
+             x:Class="XamarinUISample.MainPage">
+
+    <ContentPage.BindingContext>
+        <binding:MainPageViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <!--<RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>-->
+                </Grid.RowDefinitions>
+                <Label Text="Welcome" HorizontalOptions="Start" FontSize="30" FontAttributes="Bold" Grid.Row="0" TextColor="Black" Margin="20,20,20,0"/>
+                <Grid Grid.Row="1" Padding="20,0,20,0" >
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="BestSeller_Clicked"/>
+                    </Grid.GestureRecognizers>
+                    <Frame Margin="10" Padding="0,10,0,0" HasShadow="False">
+                        <BoxView BackgroundColor="LightSkyBlue" HeightRequest="180"/>
+                    </Frame>
+                    <Grid HeightRequest="150" >
+                        <StackLayout Grid.Column="0" Padding="20,30,0,0" VerticalOptions="Center">
+                            <Frame Padding="5" CornerRadius="5" HorizontalOptions="Start" HasShadow="False">
+                                <Label Text="Best Seller" FontSize="Medium" FontAttributes="Bold" TextColor="LightBlue" />
+                            </Frame>
+                            <Label x:Name="BestSellerProducName" Text="{Binding BestSeller.Name}" FontSize="Large" TextColor="White"/>
+                            <Label x:Name="BestSellerProductPrice" Text="{Binding BestSeller.Price, StringFormat='{0}$'}" FontSize="Large" FontAttributes="Bold" TextColor="White"/>
+                        </StackLayout>
+                        <Image Source="{Binding BestSeller.Path}" HeightRequest="200" Grid.Column="1"/>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="2" Padding="20,0,20,0" >
+                    <Label Text="Popular Deals" Grid.Column="0" FontSize="Small" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold"/>
+                    <Button Text="See more" FontSize="Small" BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="1" Padding="0" Margin="0" 
+                        HorizontalOptions="End"/>
+                </Grid>
+
+                <ScrollView Orientation="Horizontal" Grid.Row="3" Padding="20,0,0,0" >
+                    <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding ProductList}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout HorizontalOptions="Center">
+                                    <!--<StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="{Binding ProductId, StringFormat=''}"/>
+                                    </StackLayout.GestureRecognizers>-->
+                                    <Grid WidthRequest="100" HeightRequest="100">
+                                        <BoxView BackgroundColor="{Binding BackgroundColor}" HorizontalOptions="Center" WidthRequest="100" HeightRequest="100"></BoxView>
+                                        <Image Source="{Binding Path}"/>
+                                    </Grid>
+                                    <Label Text="{Binding Name}" TextColor="Black"/>
+                                    <Label Text="{Binding Price, StringFormat='{0}$'}" TextColor="Purple"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+                
+                <!--<StackLayout Grid.Row="5" Padding="0,20,0,10">
+                <BoxView HeightRequest="2"/>
+                <Grid VerticalOptions="Center" HeightRequest='30'  >
+                    <ImageButton Source="home.png" Grid.Column="0" BackgroundColor="Transparent"/>
+                    <ImageButton Source="shopping.png" Grid.Column="1" BackgroundColor="Transparent"/>
+                    <ImageButton Source="price_tag.png" Grid.Column="2" BackgroundColor="Transparent"/>
+                    <ImageButton Source="person.png" Grid.Column="3" BackgroundColor="Transparent"/>
+                </Grid>
+            </StackLayout>-->
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
