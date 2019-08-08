@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 using XamarinUISample.Models;
 
 namespace XamarinUISample.ViewModel
@@ -11,6 +14,14 @@ namespace XamarinUISample.ViewModel
         public MainPageViewModel()
         {
             MockData();
+            OpenProductCommand = new Command<int>(OpenProduct);
+        }
+
+        public ICommand OpenProductCommand { get; set; }
+
+        public void OpenProduct(int id)
+        {
+            Application.Current.MainPage.Navigation.PushAsync(new Product(id));
         }
 
         private void MockData()
@@ -25,6 +36,9 @@ namespace XamarinUISample.ViewModel
             product1.Price = 250.00m;
             product1.Path = "https://www.beatsbydre.com/content/dam/beats/web/product/headphones/solo3-wireless/pdp/solo3-pdp-p9-club_yellow.png.large.1x.png";
             product1.BackgroundColor = "Red";
+            product1.Battery = "15";
+            product1.Connection = "Bluetooth 5.0";
+            product1.Description = "With Fast Fuel it only takes a few minutes of charging to get up to 3 hours of play, so you can be on your way quicker";
             ProductList.Add(product1);
             product2.ProductId = 2;
             product2.Name = "Headphone 2";
@@ -51,17 +65,21 @@ namespace XamarinUISample.ViewModel
         public ProductModel BestSeller
         {
             get {return _bestSeller; }
-            set { _bestSeller = value; }
+            set { _bestSeller = value; OnPropertyChanged(); }
         }
 
         private List<ProductModel> _productList = new List<ProductModel>();
         public List<ProductModel> ProductList
         {
             get { return _productList; }
-            set { _productList = value; }
+            set { _productList = value; OnPropertyChanged(); }
         }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

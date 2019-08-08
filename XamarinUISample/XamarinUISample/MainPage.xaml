@@ -5,11 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:binding="clr-namespace:XamarinUISample.ViewModel"
              mc:Ignorable="d"
+              x:Name="Main"
              NavigationPage.HasNavigationBar="false"
              x:Class="XamarinUISample.MainPage">
 
     <ContentPage.BindingContext>
-        <binding:MainPageViewModel/>
+        <binding:MainPageViewModel />
     </ContentPage.BindingContext>
 
 
@@ -27,7 +28,7 @@
                 <Label Text="Welcome" HorizontalOptions="Start" FontSize="30" FontAttributes="Bold" Grid.Row="0" TextColor="Black" Margin="20,20,20,0"/>
                 <Grid Grid.Row="1" Padding="20,0,20,0" >
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="BestSeller_Clicked"/>
+                        <TapGestureRecognizer Command="{Binding OpenProductCommand}" CommandParameter="{Binding BestSeller.ProductId}" />
                     </Grid.GestureRecognizers>
                     <Frame Margin="10" Padding="0,10,0,0" HasShadow="False">
                         <BoxView BackgroundColor="LightSkyBlue" HeightRequest="180"/>
@@ -45,8 +46,8 @@
                 </Grid>
 
                 <Grid Grid.Row="2" Padding="20,0,20,0" >
-                    <Label Text="Popular Deals" Grid.Column="0" FontSize="Small" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold"/>
-                    <Button Text="See more" FontSize="Small" BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="1" Padding="0" Margin="0" 
+                    <Label Text="Popular Deals" Grid.Column="0" FontSize="Medium" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold"/>
+                    <Button Text="See more" FontSize="Small" BackgroundColor="Transparent" TextColor="DarkGray" BorderColor="Transparent" Grid.Column="1" Padding="0" Margin="0" 
                         HorizontalOptions="End"/>
                 </Grid>
 
@@ -54,15 +55,15 @@
                     <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding ProductList}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <StackLayout HorizontalOptions="Center">
-                                    <!--<StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="{Binding ProductId, StringFormat=''}"/>
-                                    </StackLayout.GestureRecognizers>-->
+                                <StackLayout HorizontalOptions="Center" WidthRequest="100">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.OpenProductCommand, Source={x:Reference Main}}" CommandParameter="{Binding ProductId}"/>
+                                    </StackLayout.GestureRecognizers>
                                     <Grid WidthRequest="100" HeightRequest="100">
                                         <BoxView BackgroundColor="{Binding BackgroundColor}" HorizontalOptions="Center" WidthRequest="100" HeightRequest="100"></BoxView>
                                         <Image Source="{Binding Path}"/>
                                     </Grid>
-                                    <Label Text="{Binding Name}" TextColor="Black"/>
+                                    <Label Text="{Binding Name}" TextColor="Black" LineBreakMode="TailTruncation"/>
                                     <Label Text="{Binding Price, StringFormat='{0}$'}" TextColor="Purple"/>
                                 </StackLayout>
                             </DataTemplate>

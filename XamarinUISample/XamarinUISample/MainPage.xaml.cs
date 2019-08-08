@@ -17,12 +17,17 @@ namespace XamarinUISample
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainPageViewModel();
+            //BindingContext = new MainPageViewModel();
         }
 
-        private void BestSeller_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new Product());
-        }
+        //private void BestSeller_Clicked(object sender, EventArgs e)
+        //{
+        //    Navigation.PushAsync(new Product());
+        //}
+
+        //private void Open_Product(int id)
+        //{
+        //    Navigation.PushAsync(new Product());
+        //}
     }
 }

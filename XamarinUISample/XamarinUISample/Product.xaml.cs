@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinUISample.ViewModel;
 
 namespace XamarinUISample
 {
@@ -15,6 +16,12 @@ namespace XamarinUISample
         public Product()
         {
             InitializeComponent();
+        }
+
+        public Product(int id)
+        {
+            InitializeComponent();
+            BindingContext = new ProductViewModel(id);
         }
 
 
