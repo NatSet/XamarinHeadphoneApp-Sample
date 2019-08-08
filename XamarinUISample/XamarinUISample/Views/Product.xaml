@@ -3,15 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:binding="clr-namespace:XamarinUISample.ViewModel"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="false"
              x:Class="XamarinUISample.Product">
-    <ContentPage.BindingContext>
-        <binding:ProductViewModel/>
-    </ContentPage.BindingContext>
-    
-    
+
+
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -61,7 +57,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Frame Padding="0" Margin="0" BackgroundColor="#7C6AD6" Grid.Column="0" >
-                        <Label Text="Buy Now 120$" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text="{Binding Product.Price, StringFormat='Buy Now {0}$'}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
                     </Frame>
                     <Frame Padding="0" Margin="0" BackgroundColor="White" Grid.Column="1">
                         <Label Text="Add to Cart" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>

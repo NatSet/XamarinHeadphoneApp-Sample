@@ -48,7 +48,7 @@
                 <Grid Grid.Row="2" Padding="20,0,20,0" >
                     <Label Text="Popular Deals" Grid.Column="0" FontSize="Medium" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold"/>
                     <Button Text="See more" FontSize="Small" BackgroundColor="Transparent" TextColor="DarkGray" BorderColor="Transparent" Grid.Column="1" Padding="0" Margin="0" 
-                        HorizontalOptions="End"/>
+                        HorizontalOptions="End" Command="{Binding SeeAllCommand}"/>
                 </Grid>
 
                 <ScrollView Orientation="Horizontal" Grid.Row="3" Padding="20,0,0,0" >

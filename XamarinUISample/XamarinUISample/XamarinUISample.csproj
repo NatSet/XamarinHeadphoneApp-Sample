@@ -15,13 +15,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Product.xaml">
+    <EmbeddedResource Update="Views\PopularDealsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Tabbed.xaml">
+    <EmbeddedResource Update="Views\Product.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="TestPage.xaml">
+    <EmbeddedResource Update="Views\Tabbed.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TestPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

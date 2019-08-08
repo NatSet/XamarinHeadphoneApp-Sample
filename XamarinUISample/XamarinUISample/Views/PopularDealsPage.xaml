@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:binding="clr-namespace:XamarinUISample.ViewModel"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="PopularDeals"
+             x:Class="XamarinUISample.Views.PopularDealsPage">
+
+    <ContentPage.BindingContext>
+        <binding:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid HeightRequest="150">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Text="&lt;" FontSize="Large" FontAttributes="Bold" TextColor="White" Clicked="Button_Clicked"  BackgroundColor="Transparent"/>
+                <Label Grid.Column="1" Text="Popular Deals" FontSize="30" FontAttributes="Bold" TextColor="Black" />
+            </Grid>
+            <ScrollView Padding="20,0,20,0">
+                <Grid ColumnSpacing="0">
+                    <StackLayout Orientation="Vertical" BindableLayout.ItemsSource="{Binding ProductListLeft}" Grid.Column="0">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.OpenProductCommand, Source={x:Reference PopularDeals}}" CommandParameter="{Binding ProductId}"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Grid WidthRequest="100" HeightRequest="100">
+                                        <BoxView BackgroundColor="{Binding BackgroundColor}" HorizontalOptions="Center" WidthRequest="100" HeightRequest="100"></BoxView>
+                                        <Image Source="{Binding Path}"/>
+                                    </Grid>
+                                    <Label Text="{Binding Name}" TextColor="Black" LineBreakMode="TailTruncation" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Price, StringFormat='{0}$'}" TextColor="Purple" HorizontalOptions="Center"/>
+                                    <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" Color="DarkGray"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" BindableLayout.ItemsSource="{Binding ProductListRight}" Grid.Column="1">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.OpenProductCommand, Source={x:Reference PopularDeals}}" CommandParameter="{Binding ProductId}"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Grid WidthRequest="100" HeightRequest="100">
+                                        <BoxView BackgroundColor="{Binding BackgroundColor}" HorizontalOptions="Center" WidthRequest="100" HeightRequest="100"></BoxView>
+                                        <Image Source="{Binding Path}"/>
+                                    </Grid>
+                                    <Label Text="{Binding Name}" TextColor="Black" LineBreakMode="TailTruncation" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Price, StringFormat='{0}$'}" TextColor="Purple" HorizontalOptions="Center"/>
+                                    <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" Color="DarkGray"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </Grid>
+                <!--<ListView ItemsSource="{Binding ProductList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="8">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenProductCommand, Source={x:Reference PopularDeals}}" CommandParameter="{Binding ProductId}"/>
+                                </Grid.GestureRecognizers>
+                                <Image Source="{Binding Path}" HeightRequest="150" Grid.Column="0"/>
+                                <StackLayout Grid.Column="1">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Price, StringFormat='{0}$'}" FontAttributes="Bold" TextColor="Purple"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+            </ScrollView>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
